@@ -15,6 +15,7 @@ public class SnakeGameView extends JFrame{
     }
 
     private void viewBuild() {
+        add(new GameBoard());
         prepareWindow();
     }
 
