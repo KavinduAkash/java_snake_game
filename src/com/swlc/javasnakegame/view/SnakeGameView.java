@@ -26,9 +26,12 @@ public class SnakeGameView extends JFrame{
 
     private void viewBuild() {
 
+        snake = new Snake();
+        food = new Food(snake);
+
         setLayout(new GridBagLayout());
 
-        gameBoard = new GameBoard();
+        gameBoard = new GameBoard(this);
         scorePanel = new ScorePanel();
 
         add(gameBoard, new GridBagManager(0, 10, 8, 8));
@@ -47,4 +50,11 @@ public class SnakeGameView extends JFrame{
         this.setLocationRelativeTo(null);
     }
 
+    public Snake getSnake() {
+        return snake;
+    }
+
+    public Food getFood() {
+        return food;
+    }
 }
