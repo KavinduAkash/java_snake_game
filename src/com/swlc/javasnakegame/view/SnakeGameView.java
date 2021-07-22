@@ -56,6 +56,8 @@ public class SnakeGameView extends JFrame implements KeyListener {
 
 
     public void check() {
+        this.checkApple();
+        this.snakeCollision();
         this.checkCollisions();
         this.checkApple();
     }
@@ -66,6 +68,17 @@ public class SnakeGameView extends JFrame implements KeyListener {
             snake.setBodyParts(bodyParts+1);
             scorePanel.addPoints(1);
             food.newFood(snake);
+        }
+    }
+
+    private void snakeCollision() {
+        for (int i = snake.getBodyParts(); i > 0; i--) {
+            if (i > 4
+                    && snake.getX()[0] == snake.getX()[i]
+                    && snake.getY()[0] == snake.getY()[i]) {
+
+                gameBoard.running = false;
+            }
         }
     }
 
