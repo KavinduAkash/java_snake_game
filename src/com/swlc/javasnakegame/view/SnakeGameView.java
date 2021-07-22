@@ -1,5 +1,6 @@
 package com.swlc.javasnakegame.view;
 
+import com.swlc.javasnakegame.constant.GameConstant;
 import com.swlc.javasnakegame.controller.GameBoard;
 import com.swlc.javasnakegame.controller.ScorePanel;
 import com.swlc.javasnakegame.modal.Food;
@@ -48,6 +49,47 @@ public class SnakeGameView extends JFrame{
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+    }
+
+
+    public void check() {
+        this.checkCollisions();
+    }
+
+    public void checkCollisions() {
+
+        if(gameBoard!=null) {
+            //head
+            for(int i = snake.getBodyParts(); i<0; i--) {
+                if((snake.getX()[0] == snake.getX()[i]) && (snake.getY()[0] == snake.getY()[i])) {
+                    gameBoard.running = false;
+                }
+            }
+
+            //left boarder
+            if(snake.getX()[0] < 0) {
+                gameBoard.running = false;
+            }
+
+            //right boarder
+            if(snake.getX()[0] > GameConstant.SCREEN_WIDTH) {
+                gameBoard.running = false;
+            }
+
+            //top boarder
+            if(snake.getY()[0] < 0) {
+                gameBoard.running = false;
+            }
+
+            //bottom boarder
+            if(snake.getY()[0] > GameConstant.SCREEN_HEIGHT) {
+                gameBoard.running = false;
+            }
+
+            if(!gameBoard.running) {
+                gameBoard.running = false;
+            }
+        }
     }
 
     public Snake getSnake() {

@@ -47,6 +47,7 @@ public class GameBoard extends JPanel implements Runnable {
         try {
             while (true) {
                 s.move();
+                sv.check();
                 if (!running) {
                     Thread.currentThread().interrupt();
                 }
