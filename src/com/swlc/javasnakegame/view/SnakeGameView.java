@@ -9,11 +9,14 @@ import com.swlc.javasnakegame.util.GridBagManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * @author hp
  */
-public class SnakeGameView extends JFrame{
+public class SnakeGameView extends JFrame implements KeyListener {
 
     private Snake snake;
     private Food food;
@@ -54,7 +57,18 @@ public class SnakeGameView extends JFrame{
 
     public void check() {
         this.checkCollisions();
+        this.checkApple();
     }
+
+    public void checkApple() {
+        if((snake.getX()[0] == food.getAppleX()) && (snake.getY()[0] == food.getAppleY())) {
+            int bodyParts = snake.getBodyParts();
+            snake.setBodyParts(bodyParts+1);
+            scorePanel.addPoints(1);
+            food.newFood(snake);
+        }
+    }
+
 
     public void checkCollisions() {
 
@@ -99,4 +113,13 @@ public class SnakeGameView extends JFrame{
     public Food getFood() {
         return food;
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) { }
+
+    @Override
+    public void keyPressed(KeyEvent e) { }
+
+    @Override
+    public void keyReleased(KeyEvent e) { }
 }

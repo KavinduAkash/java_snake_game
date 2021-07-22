@@ -7,11 +7,15 @@ import com.swlc.javasnakegame.view.SnakeGameView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * @author hp
  */
-public class GameBoard extends JPanel implements Runnable {
+public class GameBoard extends JPanel implements Runnable, ActionListener {
 
     private Snake s;
     private Food f;
@@ -32,10 +36,13 @@ public class GameBoard extends JPanel implements Runnable {
         startGame();
 
         this.setPreferredSize(new Dimension(GameConstant.SCREEN_WIDTH, GameConstant.SCREEN_HEIGHT));
+        this.addKeyListener(g);
+        this.addKeyListener(new GameBoard.MyKeyAdapter());
+        this.setFocusTraversalKeysEnabled(false);
         this.setFocusable(true);
     }
 
-    private void startGame() {
+    public void startGame() {
         running = true;
         thread = new Thread(this);
         thread.start();
@@ -65,6 +72,14 @@ public class GameBoard extends JPanel implements Runnable {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("sss");
+        s.move();
+        sv.check();
+        repaint();
+    }
+
     public void paintComponent(java.awt.Graphics g) {
 
         super.paintComponent(g);
@@ -83,6 +98,46 @@ public class GameBoard extends JPanel implements Runnable {
                     g.setColor(Color.YELLOW);
                     g.fillRect(s.getX()[i], s.getY()[i], GameConstant.UNIT_SIZE, GameConstant.UNIT_SIZE);
                 }
+            }
+        }
+    }
+
+    public class MyKeyAdapter extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
+                    if(s.getDirection() != 'R') {
+//                        direction = 'L';
+                        s.setDirection('L');
+                    }
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    if(s.getDirection() != 'L') {
+//                        direction = 'R';
+                        s.setDirection('R');
+                    }
+                    break;
+                case KeyEvent.VK_UP:
+                    if(s.getDirection() != 'D') {
+//                        direction = 'U';
+                        s.setDirection('U');
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
+                    if(s.getDirection() != 'U') {
+//                        direction = 'D';
+                        s.setDirection('D');
+                    }
+                    break;
+                case KeyEvent.VK_ENTER:
+                    if(!running) {
+                        s.resetSnake();
+                        running = true;
+                        startGame();
+                    }
+                    break;
             }
         }
     }
