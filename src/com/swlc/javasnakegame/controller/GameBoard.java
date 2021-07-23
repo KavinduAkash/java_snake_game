@@ -136,6 +136,7 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
                 case KeyEvent.VK_ENTER:
                     if(!running) {
                         s.resetSnake();
+                        sv.getScorePanel().reset();
                         running = true;
                         startGame();
                     }

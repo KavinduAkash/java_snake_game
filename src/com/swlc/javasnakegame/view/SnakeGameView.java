@@ -9,7 +9,6 @@ import com.swlc.javasnakegame.util.GridBagManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -99,7 +98,7 @@ public class SnakeGameView extends JFrame implements KeyListener {
             }
 
             //right boarder
-            if(snake.getX()[0] > GameConstant.SCREEN_WIDTH) {
+            if(snake.getX()[0] >= GameConstant.SCREEN_WIDTH) {
                 gameBoard.running = false;
             }
 
@@ -109,7 +108,7 @@ public class SnakeGameView extends JFrame implements KeyListener {
             }
 
             //bottom boarder
-            if(snake.getY()[0] > GameConstant.SCREEN_HEIGHT) {
+            if(snake.getY()[0] >= GameConstant.SCREEN_HEIGHT) {
                 gameBoard.running = false;
             }
 
@@ -125,6 +124,10 @@ public class SnakeGameView extends JFrame implements KeyListener {
 
     public Food getFood() {
         return food;
+    }
+
+    public ScorePanel getScorePanel() {
+        return scorePanel;
     }
 
     @Override
