@@ -99,6 +99,8 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
                     g.fillRect(s.getX()[i], s.getY()[i], GameConstant.UNIT_SIZE, GameConstant.UNIT_SIZE);
                 }
             }
+        } else {
+            gameOver(g);
         }
     }
 
@@ -141,5 +143,27 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
             }
         }
     }
+
+    public void gameOver(Graphics g) {
+
+        System.out.println("Over");
+        //game over
+        g.setColor(Color.white);
+        g.setFont(new Font("Times New Roman", Font.BOLD, 70));
+        FontMetrics metrics2 =  getFontMetrics(g.getFont());
+        g.drawString("GAME OVER", (GameConstant.SCREEN_WIDTH - metrics2.stringWidth("GAME OVER"))/2, GameConstant.SCREEN_HEIGHT/2);
+
+
+        ImageIcon icon1 = new ImageIcon("src/com/swlc/javasnakegame/assets/snake2.png");
+        ImageIcon icon2 = new ImageIcon(icon1.getImage().getScaledInstance(150, 80, Image.SCALE_DEFAULT));
+        icon2.paintIcon(this, g, 200, 100);
+
+        g.setColor(Color.white);
+        g.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        FontMetrics metrics3 =  getFontMetrics(g.getFont());
+        g.drawString("Press enter to play again!", (GameConstant.SCREEN_WIDTH - metrics3.stringWidth("GAME OVER"))/2 - 50, GameConstant.SCREEN_HEIGHT/2 + 50);
+
+    }
+
 
 }
