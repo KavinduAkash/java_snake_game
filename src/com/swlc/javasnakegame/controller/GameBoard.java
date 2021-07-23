@@ -64,17 +64,13 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
                 Thread.sleep(GameConstant.DELAY);
             }
         } catch (InterruptedException ex) {
-            System.out.println("GAME OVER");
-
             repaint();
-
         }
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("sss");
         s.move();
         sv.check();
         repaint();
@@ -147,8 +143,6 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
 
     public void gameOver(Graphics g) {
 
-        System.out.println("Over");
-        //game over
         g.setColor(Color.white);
         g.setFont(new Font("Times New Roman", Font.BOLD, 70));
         FontMetrics metrics2 =  getFontMetrics(g.getFont());
