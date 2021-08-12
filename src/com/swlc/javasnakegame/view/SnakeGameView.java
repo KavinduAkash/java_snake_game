@@ -30,7 +30,7 @@ public class SnakeGameView extends JFrame implements KeyListener {
     private void viewBuild() {
 
         snake = Snake.getInstance();
-        food = new Food(snake);
+        food = Food.getInstance();
 
         setLayout(new GridBagLayout());
 
@@ -66,7 +66,7 @@ public class SnakeGameView extends JFrame implements KeyListener {
             int bodyParts = snake.getBodyParts();
             snake.setBodyParts(bodyParts+1);
             scorePanel.addPoints(1);
-            food.newFood(snake);
+            food.newFood();
         }
     }
 

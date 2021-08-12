@@ -14,15 +14,22 @@ import java.util.Random;
 public class Food {
     private int appleX;
     private int appleY;
+    private static Food food =  new Food();
 
-    public Food(Snake snake) { newFood(snake); }
+    private Food() {
+    }
+
+    public static Food getInstance() {
+        food.newFood();
+        return food;
+    }
 
     /**
      * This method use to generate new food and set food location
      * Also, restrict show apple on snake
-     * @param snake
      */
-    public void newFood(Snake snake) {
+    public void newFood() {
+        Snake snake = Snake.getInstance();
         boolean onSnake = true;
         while(onSnake) {
             onSnake = false;
