@@ -21,7 +21,7 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
     private Food f;
     private SnakeGameView sv;
     private Thread thread;
-    public boolean running;
+    private boolean running;
 
     public GameBoard(SnakeGameView g) {
 
@@ -56,12 +56,12 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
                 s.move();
                 sv.check();
                 if (!running) {
-                    Thread.currentThread().interrupt();
+                    thread.currentThread().interrupt();
                 }
-                if (!Thread.currentThread().isInterrupted()) {
+                if (!thread.currentThread().isInterrupted()) {
                     repaint();
                 }
-                Thread.sleep(GameConstant.DELAY);
+                thread.sleep(GameConstant.DELAY);
             }
         } catch (InterruptedException ex) {
             repaint();
@@ -160,5 +160,11 @@ public class GameBoard extends JPanel implements Runnable, ActionListener {
 
     }
 
+    public boolean isRunning() {
+        return running;
+    }
 
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
 }

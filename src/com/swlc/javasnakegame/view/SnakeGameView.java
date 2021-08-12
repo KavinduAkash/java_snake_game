@@ -29,7 +29,7 @@ public class SnakeGameView extends JFrame implements KeyListener {
 
     private void viewBuild() {
 
-        snake = new Snake();
+        snake = Snake.getInstance();
         food = new Food(snake);
 
         setLayout(new GridBagLayout());
@@ -76,7 +76,8 @@ public class SnakeGameView extends JFrame implements KeyListener {
                     && snake.getX()[0] == snake.getX()[i]
                     && snake.getY()[0] == snake.getY()[i]) {
 
-                gameBoard.running = false;
+//                gameBoard.running = false;
+                this.gameRunningController(false);
             }
         }
     }
@@ -88,34 +89,44 @@ public class SnakeGameView extends JFrame implements KeyListener {
             //head
             for(int i = snake.getBodyParts(); i<0; i--) {
                 if((snake.getX()[0] == snake.getX()[i]) && (snake.getY()[0] == snake.getY()[i])) {
-                    gameBoard.running = false;
+//                    gameBoard.setRunning(false);
+                    this.gameRunningController(false);
                 }
             }
 
             //left boarder
             if(snake.getX()[0] < 0) {
-                gameBoard.running = false;
+//                gameBoard.setRunning(false);
+                this.gameRunningController(false);
             }
 
             //right boarder
             if(snake.getX()[0] >= GameConstant.SCREEN_WIDTH) {
-                gameBoard.running = false;
+//                gameBoard.running = false;
+                this.gameRunningController(false);
             }
 
             //top boarder
             if(snake.getY()[0] < 0) {
-                gameBoard.running = false;
+//                gameBoard.running = false;
+                this.gameRunningController(false);
             }
 
             //bottom boarder
             if(snake.getY()[0] >= GameConstant.SCREEN_HEIGHT) {
-                gameBoard.running = false;
+//                gameBoard.running = false;
+                this.gameRunningController(false);
             }
 
-            if(!gameBoard.running) {
-                gameBoard.running = false;
+            if(!gameBoard.isRunning()) {
+//                gameBoard.running = false;
+                this.gameRunningController(false);
             }
         }
+    }
+
+    private void gameRunningController(boolean isRunning) {
+        gameBoard.setRunning(isRunning);
     }
 
     public Snake getSnake() {

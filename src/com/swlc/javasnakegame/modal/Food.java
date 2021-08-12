@@ -12,8 +12,8 @@ import java.util.Random;
  * This class responsible for handle food
  */
 public class Food {
-    int appleX;
-    int appleY;
+    private int appleX;
+    private int appleY;
 
     public Food(Snake snake) { newFood(snake); }
 

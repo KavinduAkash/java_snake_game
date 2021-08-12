@@ -11,13 +11,22 @@ import com.swlc.javasnakegame.constant.GameConstant;
  */
 public class Snake {
 
-    static final int GAME_UNITS = (GameConstant.SCREEN_HEIGHT * GameConstant.SCREEN_HEIGHT)/GameConstant.UNIT_SIZE;
+    private static final int GAME_UNITS = (GameConstant.SCREEN_HEIGHT * GameConstant.SCREEN_HEIGHT)/GameConstant.UNIT_SIZE;
 
-    int x[] = new int[GAME_UNITS];
-    int y[] = new int[GAME_UNITS];
+    private int x[] = new int[GAME_UNITS];
+    private int y[] = new int[GAME_UNITS];
 
-    int bodyParts = 1;
-    char direction = 'R';
+    private int bodyParts = 1;
+    private char direction = 'R';
+
+    private static Snake snake = new Snake();
+
+    private Snake() {
+    }
+
+    public static Snake getInstance() {
+        return snake;
+    }
 
     /**
      * This method use to handle snake direction and moving
