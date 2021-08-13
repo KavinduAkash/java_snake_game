@@ -1,3 +1,4 @@
+import com.swlc.javasnakegame.constant.GameConstant;
 import com.swlc.javasnakegame.modal.Snake;
 import org.junit.Test;
 
@@ -57,6 +58,54 @@ public class SnakeTest {
         Snake snakeObj1 = Snake.getInstance();
         snakeObj1.resetSnake();
         assertEquals('R', snakeObj1.getDirection());
+    }
+
+    /**
+     * Snake move up
+     */
+    @Test
+    public void testSnakeMoveUp() {
+        Snake snakeObj1 = Snake.getInstance();
+        int expectedY = snakeObj1.getY()[0] - GameConstant.UNIT_SIZE;
+        snakeObj1.setDirection('U');
+        snakeObj1.move();
+        assertEquals(expectedY, snakeObj1.getY()[0]);
+    }
+
+    /**
+     * Snake move down
+     */
+    @Test
+    public void testSnakeMoveDown() {
+        Snake snakeObj1 = Snake.getInstance();
+        int expectedY = snakeObj1.getY()[0] + GameConstant.UNIT_SIZE;
+        snakeObj1.setDirection('D');
+        snakeObj1.move();
+        assertEquals(expectedY, snakeObj1.getY()[0]);
+    }
+
+    /**
+     * Snake move left
+     */
+    @Test
+    public void testSnakeMoveLeft() {
+        Snake snakeObj1 = Snake.getInstance();
+        int expectedX = snakeObj1.getX()[0] - GameConstant.UNIT_SIZE;
+        snakeObj1.setDirection('L');
+        snakeObj1.move();
+        assertEquals(expectedX, snakeObj1.getX()[0]);
+    }
+
+    /**
+     * Snake move right
+     */
+    @Test
+    public void testSnakeMoveRight() {
+        Snake snakeObj1 = Snake.getInstance();
+        int expectedX = snakeObj1.getX()[0] + GameConstant.UNIT_SIZE;
+        snakeObj1.setDirection('R');
+        snakeObj1.move();
+        assertEquals(expectedX, snakeObj1.getX()[0]);
     }
 
 }
