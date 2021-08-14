@@ -10,3 +10,7 @@ SWLC OOM Module assessment java swing snake game
 ### Run app on IDE (Recommonded IDE: Jetbrains Intellij IDEA)
 
 Import the cloned project into your IDE and run the main method in AppInitializer class.
+
+## Dependencies for Unit Testing
+
+[Junit4](https://junit.org/junit4/)
