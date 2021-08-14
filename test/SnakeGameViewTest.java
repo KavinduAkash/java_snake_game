@@ -89,4 +89,68 @@ public class SnakeGameViewTest {
 
     }
 
+    /**
+     * test left wall collision
+     */
+    @Test
+    public void testLeftWallCollision() {
+        SnakeGameView snakeGameView = new SnakeGameView();
+        Snake instance = Snake.getInstance();
+
+        instance.getX()[0] = -25;
+        instance.setBodyParts(1);
+        snakeGameView.check();
+
+        assertEquals(false, snakeGameView.getGameBoard().isRunning());
+
+    }
+
+    /**
+     * test right wall collision
+     */
+    @Test
+    public void testRightWallCollision() {
+        SnakeGameView snakeGameView = new SnakeGameView();
+        Snake instance = Snake.getInstance();
+
+        instance.getX()[0] = GameConstant.SCREEN_WIDTH;
+        instance.setBodyParts(1);
+        snakeGameView.check();
+
+        assertEquals(false, snakeGameView.getGameBoard().isRunning());
+
+    }
+
+    /**
+     * test top wall collision
+     */
+    @Test
+    public void testTopWallCollision() {
+        SnakeGameView snakeGameView = new SnakeGameView();
+        Snake instance = Snake.getInstance();
+
+        instance.getY()[0] = -25;
+        instance.setBodyParts(1);
+        snakeGameView.check();
+
+        assertEquals(false, snakeGameView.getGameBoard().isRunning());
+
+    }
+
+    /**
+     * test bottom wall collision
+     */
+    @Test
+    public void testBottomWallCollision() {
+        SnakeGameView snakeGameView = new SnakeGameView();
+        Snake instance = Snake.getInstance();
+
+        instance.getY()[0] = GameConstant.SCREEN_HEIGHT;
+        instance.setBodyParts(1);
+        snakeGameView.check();
+
+        assertEquals(false, snakeGameView.getGameBoard().isRunning());
+
+    }
+
 }

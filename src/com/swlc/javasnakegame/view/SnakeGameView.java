@@ -70,15 +70,22 @@ public class SnakeGameView extends JFrame implements KeyListener {
         }
     }
 
-    private void snakeCollision() {
+    public void snakeCollision() {
+
+
+
         for (int i = snake.getBodyParts(); i > 0; i--) {
+
             if (i > 4
                     && snake.getX()[0] == snake.getX()[i]
                     && snake.getY()[0] == snake.getY()[i]) {
 
 //                gameBoard.running = false;
+
                 this.gameRunningController(false);
             }
+
+
         }
     }
 
@@ -139,6 +146,10 @@ public class SnakeGameView extends JFrame implements KeyListener {
 
     public ScorePanel getScorePanel() {
         return scorePanel;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
     }
 
     @Override
